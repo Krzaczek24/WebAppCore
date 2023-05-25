@@ -1,4 +1,4 @@
-﻿# Core.Database
+﻿# Core.Database.EntityFrameworkCore
 Template for database library
 
 ## v1.0.0
