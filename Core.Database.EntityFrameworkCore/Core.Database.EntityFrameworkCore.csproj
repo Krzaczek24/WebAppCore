@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<RepositoryUrl>https://github.com/Krzaczek24/WebAppCore</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageId>Core.Database</PackageId>
+		<PackageId>Core.Database.EntityFrameworkCore</PackageId>
 		<Version>1.0.0</Version>
 		<Authors>Tomasz 'Krzaczek' Drewek</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>

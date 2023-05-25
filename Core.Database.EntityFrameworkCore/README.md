@@ -12,3 +12,4 @@ Template for database library
 * Checks for exceptions:
 	* `bool IsDuplicateEntryException(this DbUpdateException ex)`
 	* `bool IsCannotDeleteOrUpdateExcpetion(this DbUpdateException ex)`
+* `AddScopedDbServices(this IServiceCollection services)` - extension for WebApi `IServiceCollection services`
