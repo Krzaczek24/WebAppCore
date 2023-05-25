@@ -1,5 +1,7 @@
 ﻿# Core.Database.EntityFrameworkCore
 Template for database library
+## v1.0.2
+* Renamed `Update` to `UpdateBuilder` and `Remove` to `Delete` to avoid ambiguous method calls
 ## v1.0.1
 * Fixed few access modifiers
 ## v1.0.0

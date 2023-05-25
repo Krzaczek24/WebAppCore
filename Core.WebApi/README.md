@@ -1,6 +1,5 @@
 ﻿# Core.WebApi
 Template for WebApi application
-
 ## v1.1.0
 * Removed unnecessary dependency to `Core.Database.EntityFrameworkCore`
 * `AddScopedDbServices(this IServiceCollection services)` no longer available

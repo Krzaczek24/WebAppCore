@@ -8,14 +8,14 @@ namespace Core.Database.Extensions
 {
     public static class DatabaseExtension
     {
-        public static IUpdateBuilder<TEntity> Update<TDbContext, TEntity>(this TDbContext database, int id)
+        public static IUpdateBuilder<TEntity> UpdateBuilder<TDbContext, TEntity>(this TDbContext database, int id)
             where TDbContext : DbContext
             where TEntity : class, IDbTableCommonModel, new()
         {
             return new UpdateBuilder<TDbContext, TEntity>(database, id);
         }
 
-        public static async Task<int> Remove<TDbContext, TEntity>(this TDbContext database, int id)
+        public static async Task<int> Delete<TDbContext, TEntity>(this TDbContext database, int id)
             where TDbContext : DbContext
             where TEntity : class, IDbTableCommonModel, new()
         {
