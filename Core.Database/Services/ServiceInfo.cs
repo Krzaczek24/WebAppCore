@@ -9,7 +9,7 @@ namespace Core.Database.Services
         public Type ServiceType { get; }
     }
 
-    public class ServiceInfo : IServiceInfo
+    internal class ServiceInfo : IServiceInfo
     {
         public ServiceInfo(Type serviceType)
         {

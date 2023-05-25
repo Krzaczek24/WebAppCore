@@ -8,5 +8,6 @@ namespace Core.Database.Models
 
         public void SetModifLogin(string modifLogin);
         public void SetModifDate(DateTime modifDate);
+        public bool IsActive();
     }
 }

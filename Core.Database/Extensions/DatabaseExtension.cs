@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Database.Extensions
 {
-    internal static class DatabaseExtensions
+    internal static class DatabaseExtension
     {
         public static IUpdateBuilder<TEntity> Update<TDbContext, TEntity>(this TDbContext database, int id)
             where TDbContext : DbContext

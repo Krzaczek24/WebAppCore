@@ -1,5 +1,6 @@
 ﻿using Core.Database.Models;
 using Microsoft.EntityFrameworkCore;
+using Specifiable;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
