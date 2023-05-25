@@ -1,6 +1,6 @@
 ﻿using Core.Database.Models;
+using KrzaqTools;
 using Microsoft.EntityFrameworkCore;
-using Specifiable;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Database.Tools
 {
-    internal interface IUpdateBuilder<TEntity> where TEntity : class, IDbTableCommonModel, new()
+    public interface IUpdateBuilder<TEntity> where TEntity : class, IDbTableCommonModel, new()
     {
         public IUpdateBuilder<TEntity> Set<TProperty>(Expression<Func<TEntity, TProperty>> selector, TProperty value);
         public IUpdateBuilder<TEntity> Set<TProperty>(Expression<Func<TEntity, TProperty>> selector, Specifiable<TProperty> value);
@@ -16,7 +16,7 @@ namespace Core.Database.Tools
         public Task<int> Execute(string updaterLogin);
     }
 
-    internal class UpdateBuilder<TDbContext, TEntity> : IUpdateBuilder<TEntity>
+    public class UpdateBuilder<TDbContext, TEntity> : IUpdateBuilder<TEntity>
         where TDbContext : DbContext
         where TEntity : class, IDbTableCommonModel, new()
     {
