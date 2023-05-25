@@ -10,6 +10,7 @@
 		<PackageId>Core.Database</PackageId>
 		<Version>1.0.0</Version>
 		<Authors>Tomasz 'Krzaczek' Drewek</Authors>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
