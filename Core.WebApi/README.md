@@ -1,5 +1,10 @@
 ﻿# Core.WebApi
 Template for WebApi application
+## v1.2.0
+* Added exceptions
+* Common failure response model
+* Middleware from now is handling exceptions and allows methods overriding
+* All endpoints are returning `ErrorResponse` for failures by default 
 ## v1.1.0
 * Removed unnecessary dependency to `Core.Database.EntityFrameworkCore`
 * `AddScopedDbServices(this IServiceCollection services)` no longer available

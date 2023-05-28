@@ -1,6 +1,10 @@
-﻿using Core.WebApi.Extensions;
+﻿using Core.WebApi.Exceptions;
+using Core.WebApi.Extensions;
+using Core.WebApi.Models;
+using Core.WebApi.Responses;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using NLog;
 using System;
 using System.IO;
@@ -17,7 +21,7 @@ namespace Core.WebApi.Middlewares
 
     public class LoggingMiddleware
     {
-        private static ILogger Logger { get; } = LogManager.GetLogger(nameof(LoggingMiddleware));
+        protected static ILogger Logger { get; } = LogManager.GetLogger(nameof(LoggingMiddleware));
 
         private RequestDelegate Next { get; }
 
@@ -30,11 +34,11 @@ namespace Core.WebApi.Middlewares
         {
             httpContext.Features.Set(Guid.NewGuid());
 
-            await LogRequest(httpContext);
-            await LogResponse(httpContext);
+            await HandleRequest(httpContext);
+            await HandleResponse(httpContext);
         }
 
-        private async Task LogRequest(HttpContext httpContext)
+        protected virtual async Task HandleRequest(HttpContext httpContext)
         {
             var request = httpContext.Request;
             string bodyText = string.Empty;
@@ -47,36 +51,69 @@ namespace Core.WebApi.Middlewares
                 request.Body.Position = 0;
             }
 
-            Logger.Info($"REQUEST  ({httpContext.GetGuid()}) | PATH ({request.GetPath()}) | BODY ({bodyText})");
+            LogRequest(httpContext, bodyText);
         }
 
-        private async Task LogResponse(HttpContext httpContext)
+        protected virtual async Task HandleResponse(HttpContext httpContext)
         {
-            var response = httpContext.Response;
-            var originalBodyStream = response.Body;
+            var originalBodyStream = httpContext.Response.Body;
             var responseBody = new MemoryStream();
 
-            response.Body = responseBody;
+            httpContext.Response.Body = responseBody;
 
             try
             {
                 await Next(httpContext);
             }
+            catch (HttpException exception)
+            {
+                httpContext.Response.StatusCode = (int)exception.StatusCode;
+                await HandleException(httpContext, exception);
+            }
             catch (Exception exception)
             {
-                Logger.Error(exception, exception.Message);
-                //response.ContentType = "application/json";
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                //await response.WriteAsync(exception.Message);
+                httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                await HandleException(httpContext, exception);
             }
 
-            response.Body.Seek(0, SeekOrigin.Begin);
-            string bodyText = await new StreamReader(response.Body).ReadToEndAsync();
-            response.Body.Seek(0, SeekOrigin.Begin);
+            httpContext.Response.Body.Seek(0, SeekOrigin.Begin);
+            string bodyText = await new StreamReader(httpContext.Response.Body).ReadToEndAsync();
+            httpContext.Response.Body.Seek(0, SeekOrigin.Begin);
 
-            Logger.Info($"RESPONSE ({httpContext.GetGuid()}) | CODE ({response.StatusCode}) | BODY ({bodyText})");
+            LogResponse(httpContext, bodyText);
 
             await responseBody.CopyToAsync(originalBodyStream);
+        }
+
+        protected virtual async Task HandleException(HttpContext httpContext, Exception exception)
+        {
+            LogException(httpContext, exception);
+
+            httpContext.Response.ContentType = "application/json";
+
+            var error = exception is HttpErrorException ?
+                ((HttpErrorException)exception).Error :
+                new ErrorModel(exception.Message);
+            await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(new ErrorResponse(error)));
+            
+        }
+
+        protected virtual void LogRequest(HttpContext httpContext, string bodyText)
+        {
+            Logger.Info($"REQUEST  ({httpContext.GetGuid()}) | PATH ({httpContext.Request.GetPath()}) | BODY ({bodyText})");
+        }
+
+        protected virtual void LogResponse(HttpContext httpContext, string bodyText)
+        {
+            Logger.Info($"RESPONSE ({httpContext.GetGuid()}) | CODE ({httpContext.Response.StatusCode}) | BODY ({bodyText})");
+        }
+
+        protected virtual void LogException(HttpContext httpContext, Exception exception)
+        {
+            if (httpContext.Response.StatusCode >= (int)HttpStatusCode.InternalServerError)
+            {
+                Logger.Error(exception, exception.Message);
+            }
         }
     }
 }
