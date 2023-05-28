@@ -1,5 +1,7 @@
 ﻿# Core.Database.EntityFrameworkCore
 Template for database library
+## v1.1.0
+* ServiceCollectionExtensions moved to Core.WebApi
 ## v1.0.3
 * Reverted `v1.0.2` changes, simplified generic methods by replacing `TDbContext` with `DbContext`
 ## v1.0.2

@@ -1,5 +1,8 @@
 ﻿# Core.WebApi
 Template for WebApi application
+## v1.3.0
+* ServiceCollectionExtensions moved from Core.Database.EntityFrameworkCore
+* Code cleanup
 ## v1.2.0
 * Added exceptions
 * Common failure response model

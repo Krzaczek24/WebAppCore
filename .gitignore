@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 # Temp files
 *.bak
+
+# Settings files
+**/launchSettings.json

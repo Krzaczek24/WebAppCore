@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-namespace Core.Database.Services
+namespace Core.WebApi.Models
 {
-    public interface IServiceInfo
+    internal interface IServiceInfo
     {
         public Type InterfaceType { get; }
         public Type ServiceType { get; }
