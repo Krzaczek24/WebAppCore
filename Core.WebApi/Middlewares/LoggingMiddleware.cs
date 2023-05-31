@@ -1,7 +1,5 @@
 ﻿using Core.WebApi.Exceptions;
 using Core.WebApi.Extensions;
-using Core.WebApi.Models;
-using Core.WebApi.Responses;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -91,11 +89,7 @@ namespace Core.WebApi.Middlewares
 
             httpContext.Response.ContentType = "application/json";
 
-            var error = exception is HttpErrorException ?
-                ((HttpErrorException)exception).Error :
-                new ErrorModel(exception.Message);
-            await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(new ErrorResponse(error)));
-            
+            await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(GetErrorResponse(exception)));
         }
 
         protected virtual void LogRequest(HttpContext httpContext, string bodyText)
@@ -115,5 +109,7 @@ namespace Core.WebApi.Middlewares
                 Logger.Error(exception, exception.Message);
             }
         }
+
+        protected virtual object GetErrorResponse(Exception exception) => exception.Message;
     }
 }

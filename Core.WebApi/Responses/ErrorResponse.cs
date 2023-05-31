@@ -1,12 +1,12 @@
-﻿using Core.WebApi.Models;
+﻿using Core.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace Core.WebApi.Responses
 {
-    public class ErrorResponse<T>
+    public class ErrorResponse<T> where T : IError
     {
-        public ICollection<T> Errors { get; } = Array.Empty<T>();
+        public ICollection<T> Errors { get; set; } = Array.Empty<T>();
 
         public ErrorResponse() { }
 
@@ -16,14 +16,5 @@ namespace Core.WebApi.Responses
         {
             Errors = errors;
         }
-    }
-
-    public class ErrorResponse : ErrorResponse<ErrorModel>
-    {
-        public ErrorResponse() { }
-
-        public ErrorResponse(ErrorModel error) : base(error) { }
-
-        public ErrorResponse(ICollection<ErrorModel> errors) : base(errors) { }
     }
 }

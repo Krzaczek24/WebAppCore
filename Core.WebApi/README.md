@@ -1,5 +1,10 @@
 ﻿# Core.WebApi
 Template for WebApi application
+## v1.4.0
+* Removed returning `ErrorResponse` by default
+* Removed common failure response model
+* Added `IError` interface
+* Added virtual method `GetErrorResponse` to `LoggingMiddleware`
 ## v1.3.0
 * ServiceCollectionExtensions moved from Core.Database.EntityFrameworkCore
 * Code cleanup

@@ -1,5 +1,7 @@
-﻿using Core.WebApi.Models;
+﻿using Core.WebApi.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace Core.WebApi.Exceptions
@@ -14,14 +16,20 @@ namespace Core.WebApi.Exceptions
             : base(errorMessage, innerException) { }
     }
 
-    public abstract class HttpErrorException : HttpException
+    public abstract class HttpException<T> : HttpException where T : IError
     {
-        internal ErrorModel Error { get; }
+        public List<T> Errors { get; }
 
-        public HttpErrorException(ErrorModel error, Exception? innerException = null)
+        public HttpException(T error, Exception? innerException = null)
             : base(error.Message, innerException)
         {
-            Error = error;
+            Errors = new[] { error }.ToList();
+        }
+
+        public HttpException(IEnumerable<T> errors, Exception? innerException = null)
+            : base(errors.FirstOrDefault()?.Message ?? string.Empty, innerException)
+        {
+            Errors = errors.ToList();
         }
     }
 }

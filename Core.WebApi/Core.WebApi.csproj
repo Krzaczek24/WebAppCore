@@ -8,7 +8,7 @@
 		<RepositoryUrl>https://github.com/Krzaczek24/WebAppCore</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageId>Core.WebApi</PackageId>
-		<Version>1.3.0</Version>
+		<Version>1.4.0</Version>
 		<Authors>Tomasz 'Krzaczek' Drewek</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IsPackable>true</IsPackable>
@@ -23,7 +23,10 @@
 
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="" />
-		<ProjectReference Include="..\Core.Shared\Core.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Core.Shared\Core.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

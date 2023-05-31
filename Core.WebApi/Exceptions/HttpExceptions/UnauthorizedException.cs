@@ -1,5 +1,6 @@
-﻿using Core.WebApi.Models;
+﻿using Core.WebApi.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace Core.WebApi.Exceptions.HttpExceptions
@@ -14,11 +15,14 @@ namespace Core.WebApi.Exceptions.HttpExceptions
             : base(errorMessage, innerException) { }
     }
 
-    public sealed class UnauthorizedErrorException : HttpErrorException
+    public class UnauthorizedException<T> : HttpException<T> where T : IError
     {
         internal override HttpStatusCode StatusCode => HttpStatusCode.Unauthorized;
 
-        public UnauthorizedErrorException(ErrorModel error, Exception? innerException = null)
+        public UnauthorizedException(T error, Exception? innerException = null)
             : base(error, innerException) { }
+
+        public UnauthorizedException(IEnumerable<T> errors, Exception? innerException = null)
+            : base(errors, innerException) { }
     }
 }
