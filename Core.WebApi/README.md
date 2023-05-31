@@ -1,5 +1,7 @@
 ﻿# Core.WebApi
 Template for WebApi application
+## v1.4.1
+* Exceptions placed in separated namespaces
 ## v1.4.0
 * Removed returning `ErrorResponse` by default
 * Removed common failure response model
