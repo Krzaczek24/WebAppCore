@@ -9,6 +9,9 @@ namespace Core.WebApi.Exceptions.HttpErrorExceptions
     {
         internal override HttpStatusCode StatusCode => HttpStatusCode.BadRequest;
 
+        public BadRequestException(Exception? innerException = null)
+            : base(innerException) {}
+
         public BadRequestException(T error, Exception? innerException = null)
             : base(error, innerException) { }
 

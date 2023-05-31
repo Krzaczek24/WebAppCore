@@ -9,6 +9,9 @@ namespace Core.WebApi.Exceptions.HttpErrorExceptions
     {
         internal override HttpStatusCode StatusCode => HttpStatusCode.InternalServerError;
 
+        public InternalServerException(Exception? innerException = null)
+            : base(innerException) { }
+
         public InternalServerException(T error, Exception? innerException = null)
             : base(error, innerException) { }
 

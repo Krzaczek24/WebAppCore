@@ -7,7 +7,9 @@ namespace Core.WebApi.Exceptions
 {
     public abstract class HttpErrorException<T> : HttpException where T : IError
     {
-        public List<T> Errors { get; }
+        public ICollection<T> Errors { get; } = Array.Empty<T>();
+
+        public HttpErrorException(Exception? innerException = null) { }
 
         public HttpErrorException(T error, Exception? innerException = null)
             : base(error.Message, innerException)

@@ -9,6 +9,9 @@ namespace Core.WebApi.Exceptions.HttpErrorExceptions
     {
         internal override HttpStatusCode StatusCode => HttpStatusCode.NotFound;
 
+        public NotFoundException(Exception? innerException = null)
+            : base(innerException) { }
+
         public NotFoundException(T error, Exception? innerException = null)
             : base(error, innerException) { }
 

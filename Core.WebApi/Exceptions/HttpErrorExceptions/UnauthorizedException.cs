@@ -9,6 +9,9 @@ namespace Core.WebApi.Exceptions.HttpErrorExceptions
     {
         internal override HttpStatusCode StatusCode => HttpStatusCode.Unauthorized;
 
+        public UnauthorizedException(Exception? innerException = null)
+            : base(innerException) { }
+
         public UnauthorizedException(T error, Exception? innerException = null)
             : base(error, innerException) { }
 

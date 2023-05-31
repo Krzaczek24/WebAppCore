@@ -9,6 +9,9 @@ namespace Core.WebApi.Exceptions.HttpErrorExceptions
     {
         internal override HttpStatusCode StatusCode => HttpStatusCode.Conflict;
 
+        public ConflictException(Exception? innerException = null)
+            : base(innerException) { }
+
         public ConflictException(T error, Exception? innerException = null)
             : base(error, innerException) { }
 

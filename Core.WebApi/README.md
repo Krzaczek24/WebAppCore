@@ -1,5 +1,7 @@
 ﻿# Core.WebApi
 Template for WebApi application
+## v1.4.2
+* Added parameterless constructors for exceptions
 ## v1.4.1
 * Exceptions placed in separated namespaces
 ## v1.4.0

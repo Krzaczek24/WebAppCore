@@ -9,6 +9,9 @@ namespace Core.WebApi.Exceptions.HttpErrorExceptions
     {
         internal override HttpStatusCode StatusCode => HttpStatusCode.Forbidden;
 
+        public ForbiddenException(Exception? innerException = null)
+            : base(innerException) { }
+
         public ForbiddenException(T error, Exception? innerException = null)
             : base(error, innerException) { }
 
