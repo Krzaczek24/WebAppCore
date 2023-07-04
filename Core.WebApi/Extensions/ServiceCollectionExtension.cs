@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Core.WebApi.Extensions
 {
-    public static class ServiceCollectionExtensions
+    public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddCoreScopedServices(this IServiceCollection services, params Assembly[] assemblies)
         {
