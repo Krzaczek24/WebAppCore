@@ -1,5 +1,9 @@
 ﻿# Core.WebApi
 Template for WebApi application
+## v1.4.4
+* Added `HttpRequestExtension` with `GetId()` and `GetPath()` methods
+* Extended `HttpContextExtension` with `PassRequestId()` method
+* Moved passing RequestId from `LoggingMiddleware.Invoke` to `LoggingMiddleware.HandleRequest`
 ## v1.4.3
 * Added nongeneric `ProducesResponseAttribute`
 ## v1.4.2

@@ -7,6 +7,7 @@ using NLog;
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,14 +31,14 @@ namespace Core.WebApi.Middlewares
 
         public async Task Invoke(HttpContext httpContext)
         {
-            httpContext.Features.Set(Guid.NewGuid());
-
             await HandleRequest(httpContext);
             await HandleResponse(httpContext);
         }
 
         protected virtual async Task HandleRequest(HttpContext httpContext)
         {
+            httpContext.PassRequestId();
+
             var request = httpContext.Request;
             string bodyText = string.Empty;
 
@@ -94,12 +95,12 @@ namespace Core.WebApi.Middlewares
 
         protected virtual void LogRequest(HttpContext httpContext, string bodyText)
         {
-            Logger.Info($"REQUEST  ({httpContext.GetGuid()}) | PATH ({httpContext.Request.GetPath()}) | BODY ({bodyText})");
+            Logger.Info($"REQUEST  ({httpContext.GetRequestId()}) | PATH ({httpContext.Request.GetPath()}) | BODY ({bodyText})");
         }
 
         protected virtual void LogResponse(HttpContext httpContext, string bodyText)
         {
-            Logger.Info($"RESPONSE ({httpContext.GetGuid()}) | CODE ({httpContext.Response.StatusCode}) | BODY ({bodyText})");
+            Logger.Info($"RESPONSE ({httpContext.GetRequestId()}) | CODE ({httpContext.Response.StatusCode}) | BODY ({bodyText})");
         }
 
         protected virtual void LogException(HttpContext httpContext, Exception exception)

@@ -8,7 +8,7 @@
 		<RepositoryUrl>https://github.com/Krzaczek24/WebAppCore</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageId>Core.WebApi</PackageId>
-		<Version>1.4.3</Version>
+		<Version>1.4.4</Version>
 		<Authors>Tomasz 'Krzaczek' Drewek</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IsPackable>true</IsPackable>
