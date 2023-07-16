@@ -1,5 +1,7 @@
 ﻿# Core.WebApi
 Template for WebApi application
+## v1.4.5
+* Extended `HttpContextExtension` with `GetClientIp()` method
 ## v1.4.4
 * Added `HttpRequestExtension` with `GetId()` and `GetPath()` methods
 * Extended `HttpContextExtension` with `PassRequestId()` method

@@ -5,6 +5,8 @@ namespace Core.WebApi.Extensions
 {
     public static class HttpContextExtension
     {
+        public static string? GetClientIp(this HttpContext context) => context.Connection.RemoteIpAddress?.ToString();
+
         public static void SetRequestId(this HttpContext context, Guid guid) => context.Features.Set(guid);
         public static Guid GetRequestId(this HttpContext context) => context.Features.Get<Guid>();
 
