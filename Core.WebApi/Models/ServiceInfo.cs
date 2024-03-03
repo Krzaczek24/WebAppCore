@@ -11,13 +11,16 @@ namespace Core.WebApi.Models
 
     internal class ServiceInfo : IServiceInfo
     {
-        public ServiceInfo(Type serviceType)
+        private ServiceInfo(Type serviceType)
         {
-            InterfaceType = serviceType.Assembly.GetTypes().Single(t => t.IsInterface && t.Name == "I" + serviceType.Name);
             ServiceType = serviceType;
+            InterfaceType = serviceType.Assembly.GetTypes().SingleOrDefault(t => t.IsInterface && t.Name == "I" + serviceType.Name)
+                ?? throw new InvalidOperationException($"No matching interface has been found for service [(I){serviceType.Name}]");
         }
 
         public Type InterfaceType { get; }
         public Type ServiceType { get; }
+
+        public static ServiceInfo FromImplementation(Type serviceType) => new(serviceType);
     }
 }

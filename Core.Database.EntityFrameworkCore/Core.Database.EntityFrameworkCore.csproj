@@ -1,20 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<PackageProjectUrl>https://github.com/Krzaczek24?tab=packages</PackageProjectUrl>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<RepositoryUrl>https://github.com/Krzaczek24/WebAppCore</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageId>Core.Database.EntityFrameworkCore</PackageId>
-		<Version>1.1.0</Version>
+		<Version>1.2.0</Version>
 		<Authors>Tomasz 'Krzaczek' Drewek</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="Core.Shared" Version="1.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.5" />
@@ -24,10 +25,6 @@
 
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Core.Shared\Core.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

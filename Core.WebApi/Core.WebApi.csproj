@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<PackageProjectUrl>https://github.com/Krzaczek24?tab=packages</PackageProjectUrl>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<RepositoryUrl>https://github.com/Krzaczek24/WebAppCore</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageId>Core.WebApi</PackageId>
-		<Version>1.4.5</Version>
+		<Version>1.5.0</Version>
 		<Authors>Tomasz 'Krzaczek' Drewek</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IsPackable>true</IsPackable>
@@ -16,6 +16,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="Core.Shared" Version="1.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="NLog" Version="5.1.5" />
 		<PackageReference Include="ReflectionToolbox" Version="1.1.4" />
@@ -23,10 +24,6 @@
 
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Core.Shared\Core.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,5 +1,8 @@
 ﻿# Core.Database.EntityFrameworkCore
 Template for database library
+## v1.2.0
+* Upgraded to .NET8.0 version
+* Changed reference from project to nuget package
 ## v1.1.0
 * ServiceCollectionExtensions moved to Core.WebApi
 ## v1.0.3

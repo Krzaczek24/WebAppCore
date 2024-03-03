@@ -1,5 +1,9 @@
 ﻿# Core.WebApi
 Template for WebApi application
+## v1.5.0
+* Upgraded to .NET8.0 version
+* `AddCoreSingletonServices` extension added
+* Fixed exception message for `AddCore*Services` when implementation and interface names mismatch occurs
 ## v1.4.5
 * Extended `HttpContextExtension` with `GetClientIp()` method
 ## v1.4.4
