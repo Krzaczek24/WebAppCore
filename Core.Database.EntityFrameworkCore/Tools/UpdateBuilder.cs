@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Core.Database.Tools
 {
@@ -13,15 +12,15 @@ namespace Core.Database.Tools
         public IUpdateBuilder<TEntity> Set<TProperty>(Expression<Func<TEntity, TProperty>> selector, TProperty value);
         public IUpdateBuilder<TEntity> Set<TProperty>(Expression<Func<TEntity, TProperty>> selector, Specifiable<TProperty> value);
         public IUpdateBuilder<TEntity> SetIfNotNullOrDefault<TProperty>(Expression<Func<TEntity, TProperty>> selector, TProperty value);
-        public Task<int> Execute(string updaterLogin);
+        public IUpdateBuilder<TEntity> Execute(string updaterLogin);
     }
 
     public class UpdateBuilder<TDbContext, TEntity> : IUpdateBuilder<TEntity>
         where TDbContext : DbContext
         where TEntity : class, IDbTableCommonModel, new()
     {
-        private TDbContext context;
-        private TEntity entity;
+        private readonly TDbContext context;
+        private readonly TEntity entity;
         public bool AnyChanges { get; private set; } = false;
 
         public UpdateBuilder(TDbContext database, int id)
@@ -50,16 +49,14 @@ namespace Core.Database.Tools
             return (value == null || value.Equals(default(TProperty))) ? this : Set(selector, value);
         }
 
-        public async Task<int> Execute(string updaterLogin)
+        public IUpdateBuilder<TEntity> Execute(string updaterLogin)
         {
             if (AnyChanges)
             {
                 entity.SetModifLogin(updaterLogin);
                 entity.SetModifDate(DateTime.Now);
-                return await context.SaveChangesAsync();
             }
-
-            return default;
+            return this;
         }
     }
 }

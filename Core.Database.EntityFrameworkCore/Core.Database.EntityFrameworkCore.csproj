@@ -8,7 +8,7 @@
 		<RepositoryUrl>https://github.com/Krzaczek24/WebAppCore</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageId>Core.Database.EntityFrameworkCore</PackageId>
-		<Version>1.2.1</Version>
+		<Version>1.2.5</Version>
 		<Authors>Tomasz 'Krzaczek' Drewek</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>

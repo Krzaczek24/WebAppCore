@@ -1,5 +1,13 @@
 ﻿# Core.Database.EntityFrameworkCore
 Template for database library
+## v1.2.5
+* Removed `await Database.SaveChangesAsync()` for `UpdateBuilder.Execute` and `Delete`
+## v1.2.4
+* Changed `UpdateBuilder.Execute` method, now returns `void` instead of `int`
+## v1.2.3
+* Added `Task<bool> Exists<TEntity>(this IQueryable<TEntity> set, int id)`
+## v1.2.2
+* Changed `Delete` method, now returns `void` instead of `int`
 ## v1.2.1
 * Removed invalid method `IsActive()`
 ## v1.2.0
