@@ -1,5 +1,7 @@
 ﻿# Core.Database.EntityFrameworkCore
 Template for database library
+## v1.2.1
+* Removed invalid method `IsActive()`
 ## v1.2.0
 * Upgraded to .NET8.0 version
 * Changed reference from project to nuget package
